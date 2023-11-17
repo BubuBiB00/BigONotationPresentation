@@ -39,12 +39,14 @@ int alice_solution(int n){
 }
 
 
-int f(int n){
+int f(int n, int &counter){
+    ++counter;
+
     if (n==1){
         return 1;
     }
     else{
-        return f(n-1) + f(n-1);
+        return f(n-1,counter) + f(n-1,counter);
     }
 }
 
@@ -62,6 +64,10 @@ int main(){
     auto stop_bob = high_resolution_clock::now();
     auto duration_bob = duration_cast<milliseconds>(stop_bob - start_bob);
     cout << "Bobs Solution: " << bobs_solution << " number combinations, took " << duration_bob.count() << " milliseconds to caluculate!" << endl;
+    
+    //int counter = 0;
+    //auto a = f(n, counter);
+    //cout << counter << endl;
 
     return 0;
 }
